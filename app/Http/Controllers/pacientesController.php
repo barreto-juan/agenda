@@ -50,6 +50,15 @@ class pacientesController extends Controller
         return redirect()->route('pacientes-index');
     }
 
+    public function delete($id){
+        $paciente = Paciente::where('id_paciente', $id)->first();
+        if (!empty($paciente)){
+            return view('pacientes/delete', ['paciente'=>$paciente]);
+        }else{
+            return redirect()->route('pacientes-index');
+        }
+    }
+
     public function destroy($id){
         Paciente::where('id_paciente', $id)->delete();
         return redirect()->route('pacientes-index');
