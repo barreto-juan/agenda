@@ -3,7 +3,7 @@
 @section('title', 'Cadastro de Médicos')
 @section('content')
 
-    <div class="container m-5">
+    <div class="container mt-5">
         <h1>Cadastro de Médicos</h1>
         <hr>
     </div>

@@ -12,6 +12,7 @@ class Medico extends Model
     protected $table = 'medicos';
 
     public function especialidade(){
-        return $this->belongsTo(Especialidade::class, 'especialidade_id_especialidade');
+        return $this->belongsTo(Especialidade::class, 'id_especialidade');
     }
+    
 }

@@ -7,7 +7,7 @@
     <div class="container mt-5">
         <h1>Editar Pacientes</h1>
     <hr>
-    <form action="{{ route('pacientes-update', ['id'=>$paciente->id_paciente]) }}" method="POST">
+    <form action="{{ route('pacientes-update', ['id'=>$paciente->id]) }}" method="POST">
     @csrf
     @method('PUT')
         <div class="form-group row">

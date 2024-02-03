@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('medicos', function (Blueprint $table) {
-            $table->id('id_medico');
+            $table->id()->unique();
             $table->string('nome_medico', 40);
             $table->string('crm_medico', 8);
             $table->date('data_nasc_medico');
-            $table->unsignedBigInteger('especialidade_id_especialidade');
+            $table->unsignedBigInteger('id_especialidade')->index();
             $table->timestamps();
 
-            $table->foreign('especialidade_id_especialidade')->references('id_especialidade')->on('especialidades');
+            $table->foreign('id_especialidade')->references('id')->on('especialidades');
         });
     }
 

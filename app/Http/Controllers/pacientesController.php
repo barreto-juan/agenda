@@ -23,7 +23,7 @@ class pacientesController extends Controller
     }
 
     public function edit($id){
-        $paciente = Paciente::where('id_paciente', $id)->first();
+        $paciente = Paciente::where('id', $id)->first();
         if (!empty($paciente)){
             return view('pacientes/edit', ['paciente'=>$paciente]);
         }else{
@@ -46,12 +46,12 @@ class pacientesController extends Controller
             'imc_paciente' => $request->imc_paciente,
         ];
 
-        Paciente::where('id_paciente', $id)->update($data);
+        Paciente::where('id', $id)->update($data);
         return redirect()->route('pacientes-index');
     }
 
     public function delete($id){
-        $paciente = Paciente::where('id_paciente', $id)->first();
+        $paciente = Paciente::where('id', $id)->first();
         if (!empty($paciente)){
             return view('pacientes/delete', ['paciente'=>$paciente]);
         }else{
@@ -60,7 +60,7 @@ class pacientesController extends Controller
     }
 
     public function destroy($id){
-        Paciente::where('id_paciente', $id)->delete();
+        Paciente::where('id', $id)->delete();
         return redirect()->route('pacientes-index');
     }
 }
