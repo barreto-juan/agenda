@@ -1,11 +1,11 @@
 @extends('layout/layout')
 
-@section('title', 'Médicos')
+@section('title', 'Consultas Marcadas')
 @section('content')
-@section('item', 'Médicos')
-
+@section('item', 'Consultas Marcadas')
+    
     <div class="my-3">
-        <a href="{{ route('medicos-create') }}">
+        <a href="{{ route('consultas-create') }}">
             <button class="btn btn-success">Novo registro <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
             <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1  0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></svg>
             </button>
@@ -15,26 +15,31 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">CRM</th>
-            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Data</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Observação</th>
+            <th scope="col">Paciente</th>
+            <th scope="col">Médico</th>
             <th scope="col">Especialidade</th>
-            <th scope="col">Ação</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($medico as $dados)
+            @foreach ($consultas as $dados)
                 <tr>
                     <th scope="row"> {{ $dados->id }} </th>
-                    <td> {{ $dados->nome_medico }} </td>
-                    <td> {{ $dados->crm_medico }} </td>
-                    <td> {{ $dados->data_nasc_medico }} </td>
+                    <td> {{ $dados->data_consulta }} </td>
+                    <td> {{ $dados->hora_consulta }} </td>
+                    <td> {{ $dados->valor_consulta }} </td>
+                    <td> {{ $dados->observacao_consulta }} </td>
+                    <td> {{ $dados->paciente->nome_paciente }} </td>
+                    <td> {{ $dados->medico->nome_medico }} </td>
                     <td> {{ $dados->especialidade->descricao_especialidade }} </td>
-                    <td class="d-flex"> <a href=" {{ route('medicos-edit', ['id'=>$dados->id]) }} "><button class="btn btn-primary  mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <td class="d-flex"> <a href=" {{ route('consultas-edit', ['id'=>$dados->id]) }} "><button class="btn btn-primary  mr-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
                     </svg></button></a>
-                        <form action=" {{ route('medicos-destroy', ['id'=>$dados->id]) }} " method="post">
+                        <form action=" {{ route('consultas-destroy', ['id'=>$dados->id]) }} " method="post">
                         @csrf
                         @method('DELETE')
                             <button type="submit" class="btn btn-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -48,5 +53,5 @@
         
         </tbody>
     </table>
-    
+
 @endsection

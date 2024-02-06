@@ -10,6 +10,7 @@ class especialidadesController extends Controller
     //
 
     public function index(){
-        return view('especialidades/index');
+        $dadosEspecialidades = Especialidade::all();
+        return view('especialidades/index', ['especialidade'=>$dadosEspecialidades]);
     }
 }
